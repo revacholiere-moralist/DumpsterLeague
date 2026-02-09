@@ -6,8 +6,9 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Configurations
 {
     public class PlayerEntityTypeConfiguration : BasicEntityTypeConfiguration<Player>, IEntityTypeConfiguration<Player>
     {
-        public void Configure(EntityTypeBuilder<Player> builder)
+        public override void Configure(EntityTypeBuilder<Player> builder)
         {
+            base.Configure(builder);
 
             builder.Property(p => p.CurrentDiscordId)
                 .HasColumnName("current_discord_id")

@@ -6,11 +6,9 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Configurations
 {
     public class SeasonEntityTypeConfiguration : BasicEntityTypeConfiguration<Season>, IEntityTypeConfiguration<Season>
     {
-        public void Configure(EntityTypeBuilder<Season> builder)
+        public override void Configure(EntityTypeBuilder<Season> builder)
         {
-            builder.Property(p => p.Id)
-                .HasColumnName("season_id")
-                .IsRequired();
+            base.Configure(builder);
 
             builder.Property(p => p.SeasonName)
                 .HasColumnName("season_name")
@@ -27,7 +25,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Configurations
             builder.Property(p => p.IsCurrent)
                 .HasColumnName("is_current")
                 .IsRequired();
-
         }
     }
 }

@@ -1,12 +1,11 @@
-using DumpsterLeagueLeaderboard.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DumpsterLeagueLeaderboard.Infrastructure.Configurations
 {
-    public class BasicEntityTypeConfiguration<T> : IEntityTypeConfiguration<T> where T : Common.BaseEntity
+    public class BasicEntityTypeConfiguration<T> : IEntityTypeConfiguration<T> where T : Domain.Common.BaseEntity
     {
-        public void Configure(EntityTypeBuilder<T> builder)
+        public virtual void Configure(EntityTypeBuilder<T> builder)
         {
             builder
                 .ToTable(typeof(T).Name.ToLower() + "s");
