@@ -19,7 +19,7 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
                     current_discord_id = table.Column<string>(type: "text", nullable: false),
                     current_discord_name = table.Column<string>(type: "text", nullable: false),
                     current_ign = table.Column<string>(type: "text", nullable: false),
-                    current_points = table.Column<string>(type: "text", nullable: false),
+                    current_points = table.Column<string>(type: "integer", nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)

@@ -34,14 +34,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
                 table: "players",
                 newName: "player_id");
 
-            migrationBuilder.AlterColumn<int>(
-                name: "current_points",
-                table: "players",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
-
             migrationBuilder.AddPrimaryKey(
                 name: "PK_players",
                 table: "players",
@@ -94,14 +86,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
                 name: "player_id",
                 table: "Players",
                 newName: "Id");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "current_points",
-                table: "Players",
-                type: "text",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Players",
