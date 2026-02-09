@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/DumpsterLeagueLeaderboard/">
+    <Project Path="DumpsterLeagueLeaderboard/DumpsterLeagueLeaderboard.API/DumpsterLeagueLeaderboard.API.csproj" Id="994debaa-30a1-4703-ab91-e2c2dc6e3a63" />
+    <Project Path="DumpsterLeagueLeaderboard/DumpsterLeagueLeaderboard.Application/DumpsterLeagueLeaderboard.Application.csproj" Id="5f4f09cd-c99a-4beb-a6d0-b7d05ecbc94f" />
+    <Project Path="DumpsterLeagueLeaderboard/DumpsterLeagueLeaderboard.Domain/DumpsterLeagueLeaderboard.Domain.csproj" />
+    <Project Path="DumpsterLeagueLeaderboard/DumpsterLeagueLeaderboard.Infrastructure/DumpsterLeagueLeaderboard.Infrastructure.csproj" />
+  </Folder>
+
+</Solution>
