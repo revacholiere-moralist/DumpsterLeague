@@ -12,6 +12,7 @@ namespace DumpsterLeagueLeaderboard.Domain.Entities
         public string CurrentIgn { get; set; } = "";
         [Column("current_points")]
         public int CurrentPoints { get; set; } = 0;
+        public List<PlayerPlacementHistory> PlacementHistories { get; set; } = new List<PlayerPlacementHistory>();
         
     }
 }

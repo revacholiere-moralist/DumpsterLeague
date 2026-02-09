@@ -3,6 +3,7 @@ using System;
 using DumpsterLeagueLeaderboard.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260209061331_UpdateBaseColumns")]
+    partial class UpdateBaseColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,78 +24,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("DumpsterLeagueLeaderboard.Domain.Entities.Leaderboard", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("leaderboard_id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<int>("CurrentPoints")
-                        .HasColumnType("integer")
-                        .HasColumnName("current_points");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_active");
-
-                    b.Property<bool>("IsCurrent")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_current");
-
-                    b.Property<bool>("IsDisqualified")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_disqualified");
-
-                    b.Property<DateTime>("LeaderboardDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("leaderboard_date");
-
-                    b.Property<Guid>("LeagueEventId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("league_event_id");
-
-                    b.Property<int>("Placement")
-                        .HasColumnType("integer")
-                        .HasColumnName("placement");
-
-                    b.Property<Guid>("PlayerId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("player_id");
-
-                    b.Property<int>("PointsGained")
-                        .HasColumnType("integer")
-                        .HasColumnName("points_gained");
-
-                    b.Property<Guid>("SeasonId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("season_id");
-
-                    b.Property<Guid>("TournamentId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("tournament_id");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LeagueEventId");
-
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("SeasonId");
-
-                    b.HasIndex("TournamentId");
-
-                    b.ToTable("leaderboards", (string)null);
-                });
 
             modelBuilder.Entity("DumpsterLeagueLeaderboard.Domain.Entities.LeagueEvent", b =>
                 {
@@ -351,41 +282,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
                     b.ToTable("tournaments", (string)null);
                 });
 
-            modelBuilder.Entity("DumpsterLeagueLeaderboard.Domain.Entities.Leaderboard", b =>
-                {
-                    b.HasOne("DumpsterLeagueLeaderboard.Domain.Entities.LeagueEvent", "LeagueEvent")
-                        .WithMany("Leaderboards")
-                        .HasForeignKey("LeagueEventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DumpsterLeagueLeaderboard.Domain.Entities.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DumpsterLeagueLeaderboard.Domain.Entities.Season", "Season")
-                        .WithMany("Leaderboards")
-                        .HasForeignKey("SeasonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DumpsterLeagueLeaderboard.Domain.Entities.Tournament", "Tournament")
-                        .WithMany()
-                        .HasForeignKey("TournamentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LeagueEvent");
-
-                    b.Navigation("Player");
-
-                    b.Navigation("Season");
-
-                    b.Navigation("Tournament");
-                });
-
             modelBuilder.Entity("DumpsterLeagueLeaderboard.Domain.Entities.PlayerPlacementHistory", b =>
                 {
                     b.HasOne("DumpsterLeagueLeaderboard.Domain.Entities.Player", "Player")
@@ -423,7 +319,7 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
                         .HasForeignKey("LeagueEventId");
 
                     b.HasOne("DumpsterLeagueLeaderboard.Domain.Entities.Season", "Season")
-                        .WithMany("Tournaments")
+                        .WithMany()
                         .HasForeignKey("SeasonId");
 
                     b.Navigation("LeagueEvent");
@@ -433,8 +329,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
 
             modelBuilder.Entity("DumpsterLeagueLeaderboard.Domain.Entities.LeagueEvent", b =>
                 {
-                    b.Navigation("Leaderboards");
-
                     b.Navigation("Seasons");
 
                     b.Navigation("Tournaments");
@@ -443,13 +337,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations
             modelBuilder.Entity("DumpsterLeagueLeaderboard.Domain.Entities.Player", b =>
                 {
                     b.Navigation("PlacementHistories");
-                });
-
-            modelBuilder.Entity("DumpsterLeagueLeaderboard.Domain.Entities.Season", b =>
-                {
-                    b.Navigation("Leaderboards");
-
-                    b.Navigation("Tournaments");
                 });
 #pragma warning restore 612, 618
         }

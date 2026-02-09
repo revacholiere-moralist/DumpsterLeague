@@ -7,13 +7,41 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Configurations
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
-            builder
-                .ToTable(typeof(T).Name.ToLower() + "s");
-
+            var tableName = typeof(T).Name;
+            var capitalLetterIndexes = new List<int>();
+            for (int i = 0; i < tableName.Length; i++)
+            {
+                if (char.IsUpper(tableName[i]))
+                {
+                    capitalLetterIndexes.Add(i);
+                }
+            }
+            foreach (var index in capitalLetterIndexes.Skip(1))
+            {
+                tableName = tableName.Insert(index - 1 + capitalLetterIndexes.IndexOf(index), "_");
+            }
+            tableName = tableName.ToLower();
+            
+            if (tableName.EndsWith("y"))
+            {
+                builder
+                    .ToTable(tableName.Substring(0, tableName.Length - 1) + "ies");
+            }
+            else if (tableName.EndsWith("s"))
+            {
+                builder
+                    .ToTable(tableName + "es");
+            }
+            else
+            {
+                builder
+                    .ToTable(tableName   + "s");
+            }
+            
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Id)
-                .HasColumnName(typeof(T).Name.ToLower() + "_id")
+                .HasColumnName(tableName.ToLower() + "_id")
                 .IsRequired();
 
             builder.Property(p => p.IsActive)

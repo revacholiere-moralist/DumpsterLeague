@@ -21,6 +21,11 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+await using var scope = app.Services.CreateAsyncScope();
+var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+var canConnect = await db.Database.CanConnectAsync();
+app.Logger.LogInformation("Can connect to database: {CanConnect}", canConnect);
+ 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

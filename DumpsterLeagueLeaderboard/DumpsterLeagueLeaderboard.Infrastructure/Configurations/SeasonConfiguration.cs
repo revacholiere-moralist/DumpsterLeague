@@ -10,6 +10,13 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Configurations
         {
             base.Configure(builder);
 
+            builder.Property(p => p.LeagueEventId)
+                .HasColumnName("league_event_id");
+                
+            builder.HasOne(p => p.LeagueEvent)
+                .WithMany(p => p.Seasons)
+                .HasForeignKey(p => p.LeagueEventId);
+                
             builder.Property(p => p.SeasonName)
                 .HasColumnName("season_name")
                 .IsRequired();
