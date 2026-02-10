@@ -11,6 +11,7 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Data
 
         public DbSet<Player> Players { get; set; }
         public DbSet<Season> Seasons { get; set; }
+        public DbSet<LeagueEvent> LeagueEvents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

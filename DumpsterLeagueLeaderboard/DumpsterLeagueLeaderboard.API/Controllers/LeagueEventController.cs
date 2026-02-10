@@ -1,5 +1,7 @@
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries.GetLeagueEventById;
 using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Requests;
-using DumpsterLeagueLeaderboard.LeagueEventFeatures.Commands.AddLeagueEventCommand;
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent;
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries.GetActiveLeagueEvents;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +24,13 @@ namespace DumpsterLeagueLeaderboard.WebApi.Controllers
         {
             var leagueEvent = await _mediator.Send(new AddLeagueEventCommand(request), cancellationToken);
             return CreatedAtAction(nameof(Create), new { id = leagueEvent.Id }, leagueEvent);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetLeagueEventById(Guid id, CancellationToken cancellationToken)
+        {
+            var leagueEvent = await _mediator.Send(new GetLeagueEventByIdQuery(id), cancellationToken);
+            return Ok(leagueEvent);
         }
     }
 }

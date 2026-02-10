@@ -2,11 +2,10 @@ using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Respons
 using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Commands;
 using DumpsterLeagueLeaderboard.Application.Repositories;
 using DumpsterLeagueLeaderboard.Domain.Entities;
-using DumpsterLeagueLeaderboard.LeagueEventFeatures.Commands.AddLeagueEventCommand;
 
 using MediatR;
 
-namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent;
+namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent.AddLeagueEvent;
 public class AddLeagueEventHandler : IRequestHandler<AddLeagueEventCommand, BasicLeagueEventDto>
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -22,7 +21,7 @@ public class AddLeagueEventHandler : IRequestHandler<AddLeagueEventCommand, Basi
 
     public async Task<BasicLeagueEventDto> Handle(AddLeagueEventCommand request, CancellationToken cancellationToken)
     {
-                var leagueEvent = new LeagueEvent
+        var leagueEvent = new LeagueEvent
         {
             EventName = request.Request.EventName,
             IsOngoing = request.Request.IsOngoing,
