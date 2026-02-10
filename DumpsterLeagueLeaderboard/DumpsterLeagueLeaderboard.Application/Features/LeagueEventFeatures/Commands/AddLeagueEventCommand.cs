@@ -1,0 +1,7 @@
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Requests;
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Responses;
+using MediatR;
+
+namespace DumpsterLeagueLeaderboard.LeagueEventFeatures.Commands.AddLeagueEventCommand;
+
+public record AddLeagueEventCommand(AddLeagueEventRequest Request) : IRequest<BasicLeagueEventDto>;

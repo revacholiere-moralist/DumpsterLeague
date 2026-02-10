@@ -3,6 +3,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Data
 {
     public class ApplicationWriteContext : ApplicationDbContext
     {
-        public ApplicationWriteContext(DbContextOptions options) : base(options) { }
+        public ApplicationWriteContext(DbContextOptions<ApplicationWriteContext> options) : base(options) { }
     }
 }
