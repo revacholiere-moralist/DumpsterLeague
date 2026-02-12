@@ -1,13 +1,8 @@
 using DumpsterLeagueLeaderboard.Application.Repositories;
-using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Commands;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Command.AddPlayer;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Responses;
-using DumpsterLeagueLeaderboard.Domain.Entities;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Responses;
 using MediatR;
 using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Queries;
-using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Queries;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Queries.GetActivePlayers;
-namespace DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Queries.GetPlayerById;
+namespace DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Queries.GetPlayerById;
 
 public class GetPlayerByIdQueryHandler : IRequestHandler<GetPlayerByIdQuery, PlayerDto>
 {

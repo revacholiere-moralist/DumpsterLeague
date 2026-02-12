@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-namespace DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Requests;
+namespace DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Requests;
 
 public class AddPlayerRequest
 {

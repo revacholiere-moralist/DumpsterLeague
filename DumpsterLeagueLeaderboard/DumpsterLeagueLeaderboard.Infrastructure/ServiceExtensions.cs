@@ -34,5 +34,8 @@ public static class ServiceExtensions
         
         services.AddScoped<IPlayerRepository, PlayerRepository>();
         services.AddScoped<IPlayerQueryRepository, PlayerQueryRepository>();
+        
+        services.AddScoped<IPointRepository, PointRepository>();
+        services.AddScoped<IPointQueryRepository, PointQueryRepository>();
     }
 }

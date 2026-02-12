@@ -1,5 +1,5 @@
-namespace DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Responses;
-public class PlayerDto : CommonResponseDto
+namespace DumpsterLeagueLeaderboard.Application.Features.PointFeatures.Responses;
+public class PointDto : CommonResponseDto
 {
     public string CurrentDiscordId { get; set; } = "";
 

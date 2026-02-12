@@ -2,8 +2,8 @@ using DumpsterLeagueLeaderboard.Application.Repositories;
 using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Commands;
 using DumpsterLeagueLeaderboard.Domain.Entities;
 using MediatR;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Responses;
-namespace DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Command.AddPlayer;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Responses;
+namespace DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Command.AddPlayer;
     
 public class AddPlayerHandler : IRequestHandler<AddPlayerCommand, PlayerDto>
 {

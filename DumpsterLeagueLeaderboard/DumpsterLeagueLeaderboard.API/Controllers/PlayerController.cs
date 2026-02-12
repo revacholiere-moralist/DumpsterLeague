@@ -2,15 +2,16 @@ using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries
 using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Requests;
 using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent;
 using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries.GetActiveLeagueEvents;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Queries.GetPlayerById;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Queries.GetPlayerById;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Queries.GetActivePlayers;
 using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Commands.AddSeason;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Requests;
 using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Queries.GetSeasonsByLeagueEvent;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Requests;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Command.AddPlayer;
-using DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Queries.GetActivePlayers;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Requests;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Command.AddPlayer;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Queries.GetActivePlayers;
 
 namespace DumpsterLeagueLeaderboard.WebApi.Controllers
 {
