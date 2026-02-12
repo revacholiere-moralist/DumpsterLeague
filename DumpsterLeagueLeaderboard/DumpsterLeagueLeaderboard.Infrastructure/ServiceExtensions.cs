@@ -27,6 +27,12 @@ public static class ServiceExtensions
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<ILeagueEventRepository, LeagueEventRepository>();
-        services.AddScoped<ILeagueEventQueryRepository, LeagueEventQueryRepository>();       
+        services.AddScoped<ILeagueEventQueryRepository, LeagueEventQueryRepository>();
+        
+        services.AddScoped<ISeasonRepository, SeasonRepository>();
+        services.AddScoped<ISeasonQueryRepository, SeasonQueryRepository>();
+        
+        services.AddScoped<IPlayerRepository, PlayerRepository>();
+        services.AddScoped<IPlayerQueryRepository, PlayerQueryRepository>();
     }
 }

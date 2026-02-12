@@ -4,4 +4,4 @@ using MediatR;
 
 namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent;
 
-public record AddLeagueEventCommand(AddLeagueEventRequest Request) : IRequest<BasicLeagueEventDto>;
+public record AddLeagueEventCommand(AddLeagueEventRequest Request) : IRequest<LeagueEventDto>;

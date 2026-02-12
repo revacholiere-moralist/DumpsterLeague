@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Queries;
 using DumpsterLeagueLeaderboard.Domain.Common;
 using DumpsterLeagueLeaderboard.Infrastructure.Data;
@@ -5,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DumpsterLeagueLeaderboard.Infrastructure.Repositories.Queries
 {
-    public class BaseQueryRepository<T> : IQueryRepository<T> where T : BaseEntity
+    public class BaseQueryRepository<T> : IQueryRepository<T> where T : BaseEntity, new()
     {
         protected readonly ApplicationReadContext  _readContext;
 
@@ -20,11 +21,14 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Repositories.Queries
             return await _readContext!.Set<T>().ToListAsync(cancellationToken);
         }
 
-        public virtual async Task<T>? GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public virtual async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            #pragma warning disable CS8603 // Possible null reference return.
-            return await _readContext!.Set<T>().FindAsync(id, cancellationToken);
-            #pragma warning restore CS8603 // Possible null reference return.
+            var result = await _readContext!.Set<T>().FindAsync(id, cancellationToken);
+            if (result is null)
+            {
+                return new T();
+            }
+            return result;
         }
     }
 }

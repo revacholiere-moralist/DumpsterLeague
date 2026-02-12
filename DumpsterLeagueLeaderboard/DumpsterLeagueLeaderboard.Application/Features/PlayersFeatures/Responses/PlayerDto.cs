@@ -1,7 +1,6 @@
 namespace DumpsterLeagueLeaderboard.Application.Features.PlayersFeatures.Responses;
-public class BasicPlayerDto
+public class PlayerDto : CommonResponseDto
 {
-    public int PlayerId { get; set; }
     public string CurrentDiscordId { get; set; } = "";
 
     public string CurrentDiscordName { get; set; } = "";

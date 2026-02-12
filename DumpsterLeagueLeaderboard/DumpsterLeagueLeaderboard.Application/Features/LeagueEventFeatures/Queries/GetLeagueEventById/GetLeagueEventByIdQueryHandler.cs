@@ -3,20 +3,17 @@ using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Respons
 using DumpsterLeagueLeaderboard.Application.Repositories;
 using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Queries;
 namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries.GetLeagueEventById;
-public class GetLeagueEventByIdQueryHandler : IRequestHandler<GetLeagueEventByIdQuery, BasicLeagueEventDto>
+public class GetLeagueEventByIdQueryHandler : IRequestHandler<GetLeagueEventByIdQuery, LeagueEventDto>
 {
-    private readonly IUnitOfWork _unitOfWork;
     private readonly ILeagueEventQueryRepository _leagueEventQueryRepository;
 
     public GetLeagueEventByIdQueryHandler(
-        IUnitOfWork unitOfWork,
         ILeagueEventQueryRepository leagueEventQueryRepository)
     {
-        _unitOfWork = unitOfWork;
         _leagueEventQueryRepository = leagueEventQueryRepository;
     }
 
-    public async Task<BasicLeagueEventDto> Handle(GetLeagueEventByIdQuery request, CancellationToken cancellationToken)
+    public async Task<LeagueEventDto> Handle(GetLeagueEventByIdQuery request, CancellationToken cancellationToken)
     {
        var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.Id, cancellationToken);
        if (leagueEvent is null)
@@ -24,7 +21,7 @@ public class GetLeagueEventByIdQueryHandler : IRequestHandler<GetLeagueEventById
            throw new ArgumentException("League event not found.");
        }
 
-       return new BasicLeagueEventDto
+       return new LeagueEventDto
        {
            Id = leagueEvent.Id,
            EventName = leagueEvent.EventName,

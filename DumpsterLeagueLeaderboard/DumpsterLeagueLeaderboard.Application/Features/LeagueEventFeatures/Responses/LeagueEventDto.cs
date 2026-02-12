@@ -1,5 +1,5 @@
 namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Responses;
-public class BasicLeagueEventDto : CommonResponseDto
+public class LeagueEventDto : CommonResponseDto
 {
 
     public string EventName { get; set; } = "";

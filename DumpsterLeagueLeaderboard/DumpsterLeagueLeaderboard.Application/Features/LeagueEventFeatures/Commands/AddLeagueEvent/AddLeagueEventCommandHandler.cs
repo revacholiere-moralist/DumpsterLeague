@@ -6,7 +6,7 @@ using DumpsterLeagueLeaderboard.Domain.Entities;
 using MediatR;
 
 namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent.AddLeagueEvent;
-public class AddLeagueEventHandler : IRequestHandler<AddLeagueEventCommand, BasicLeagueEventDto>
+public class AddLeagueEventHandler : IRequestHandler<AddLeagueEventCommand, LeagueEventDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILeagueEventRepository _leagueEventRepository;
@@ -19,7 +19,7 @@ public class AddLeagueEventHandler : IRequestHandler<AddLeagueEventCommand, Basi
         _leagueEventRepository = leagueEventRepository;
     }
 
-    public async Task<BasicLeagueEventDto> Handle(AddLeagueEventCommand request, CancellationToken cancellationToken)
+    public async Task<LeagueEventDto> Handle(AddLeagueEventCommand request, CancellationToken cancellationToken)
     {
         var leagueEvent = new LeagueEvent
         {
@@ -35,7 +35,7 @@ public class AddLeagueEventHandler : IRequestHandler<AddLeagueEventCommand, Basi
         try
         {
             await _unitOfWork.Save(cancellationToken);
-            return new BasicLeagueEventDto
+            return new LeagueEventDto
             {
                 Id = addedLeagueEvent.Id,
                 EventName = addedLeagueEvent.EventName,

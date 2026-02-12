@@ -3,4 +3,4 @@ using MediatR;
 
 namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries.GetLeagueEventById;
 
-public record GetLeagueEventByIdQuery(Guid Id) : IRequest<BasicLeagueEventDto>;
+public record GetLeagueEventByIdQuery(Guid Id) : IRequest<LeagueEventDto>;
