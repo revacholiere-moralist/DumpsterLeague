@@ -8,6 +8,7 @@ using DumpsterLeagueLeaderboard.Domain.Entities;
 using MediatR;
 
 namespace DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Commands.AddSeason;
+
 public class AddSeasonCommandHandler : IRequestHandler<AddSeasonCommand, SeasonDto>
 {
     private readonly IUnitOfWork _unitOfWork;

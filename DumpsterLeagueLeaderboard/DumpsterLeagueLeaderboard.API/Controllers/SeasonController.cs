@@ -29,7 +29,7 @@ namespace DumpsterLeagueLeaderboard.WebApi.Controllers
             return CreatedAtAction(nameof(Create), new { id = season.Id }, season);
         }
 
-        [HttpGet("league-event/{leagueEventId}")]
+        [HttpGet("league-events/{leagueEventId}")]
         public async Task<IActionResult> GetSeasonsByLeagueEventId(Guid leagueEventId, CancellationToken cancellationToken)
         {
             var seasons = await _mediator.Send(new GetSeasonsByLeagueEventIdQuery(leagueEventId), cancellationToken);

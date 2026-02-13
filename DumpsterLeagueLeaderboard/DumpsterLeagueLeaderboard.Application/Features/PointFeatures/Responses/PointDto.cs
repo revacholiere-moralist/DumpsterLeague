@@ -1,11 +1,11 @@
 namespace DumpsterLeagueLeaderboard.Application.Features.PointFeatures.Responses;
 public class PointDto : CommonResponseDto
 {
-    public string CurrentDiscordId { get; set; } = "";
+    public Guid LeagueEventId { get; set; } = Guid.Empty;
 
-    public string CurrentDiscordName { get; set; } = "";
+    public Guid SeasonId { get; set; } = Guid.Empty;
 
-    public string CurrentIgn { get; set; } = "";
+    public int Position { get; set; } = 0;
 
-    public int CurrentPoints { get; set; } = 0;
+    public int PointGained { get; set; } = 0;
 }
