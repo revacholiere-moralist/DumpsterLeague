@@ -37,5 +37,8 @@ public static class ServiceExtensions
         
         services.AddScoped<IPointRepository, PointRepository>();
         services.AddScoped<IPointQueryRepository, PointQueryRepository>();
+
+        services.AddScoped<ITournamentRepository, TournamentRepository>();
+        services.AddScoped<ITournamentQueryRepository, TournamentQueryRepository>();
     }
 }
