@@ -33,12 +33,12 @@ public class AddTournamentCommandHandler : IRequestHandler<AddTournamentCommand,
     {
         if (request.Request.LeagueEventId is not null && request.Request.SeasonId is not null)
         {
-            var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.Request.LeagueEventId!.Value, cancellationToken);
+            var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.Request.LeagueEventId!.Value, true, cancellationToken);
             if (leagueEvent is null)
             {
                 throw new ArgumentException("League event not found.");
             }
-            var season = await _seasonQueryRepository.GetByIdAsync(request.Request.SeasonId!.Value, cancellationToken);
+            var season = await _seasonQueryRepository.GetByIdAsync(request.Request.SeasonId!.Value, true, cancellationToken);
             if (season is null)
             {
                 throw new ArgumentException("Season not found.");

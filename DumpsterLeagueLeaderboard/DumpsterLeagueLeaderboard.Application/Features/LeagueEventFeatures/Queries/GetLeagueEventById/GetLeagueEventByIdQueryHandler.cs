@@ -15,7 +15,7 @@ public class GetLeagueEventByIdQueryHandler : IRequestHandler<GetLeagueEventById
 
     public async Task<LeagueEventDto> Handle(GetLeagueEventByIdQuery request, CancellationToken cancellationToken)
     {
-       var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.Id, cancellationToken);
+       var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.Id, true, cancellationToken);
        if (leagueEvent is null)
        {
            throw new ArgumentException("League event not found.");

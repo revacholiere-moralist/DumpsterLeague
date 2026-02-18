@@ -10,5 +10,5 @@ public class TournamentDto : CommonResponseDto
     public string? SeasonName { get; set; } = null; 
     public string TournamentName { get; set; } = string.Empty;
     public DateTime TournamentDate { get; set; }
-    public string StartGgLink { get; set; }
+    public string StartGgLink { get; set; } = string.Empty;
 }

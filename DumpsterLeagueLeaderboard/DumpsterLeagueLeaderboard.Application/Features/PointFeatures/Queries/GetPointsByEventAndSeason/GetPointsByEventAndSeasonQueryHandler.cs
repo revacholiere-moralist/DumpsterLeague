@@ -28,12 +28,12 @@ public class GetPointsByEventAndSeasonQueryHandler : IRequestHandler<GetPointsBy
 
     public async Task<List<PointDto>> Handle(GetPointsByEventAndSeasonQuery request, CancellationToken cancellationToken)
     {
-        var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.LeagueEventId, cancellationToken);
+        var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.LeagueEventId, true, cancellationToken);
         if (leagueEvent is null)
         {
             throw new ArgumentException("League event not found.");
         }
-        var season = await _seasonQueryRepository.GetByIdAsync(request.SeasonId, cancellationToken);
+        var season = await _seasonQueryRepository.GetByIdAsync(request.SeasonId, true, cancellationToken);
         if (season is null)
         {
             throw new ArgumentException("Season not found.");

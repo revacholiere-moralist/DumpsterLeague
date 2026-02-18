@@ -27,7 +27,7 @@ public class AddSeasonCommandHandler : IRequestHandler<AddSeasonCommand, SeasonD
 
     public async Task<SeasonDto> Handle(AddSeasonCommand request, CancellationToken cancellationToken)
     {
-        var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.Request.LeagueEventId, cancellationToken);
+        var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.Request.LeagueEventId, true, cancellationToken);
         if (leagueEvent is null)
         {
             throw new ArgumentException("League event not found.");

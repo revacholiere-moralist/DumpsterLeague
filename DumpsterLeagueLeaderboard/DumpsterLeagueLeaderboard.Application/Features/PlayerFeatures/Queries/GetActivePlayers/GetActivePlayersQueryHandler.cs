@@ -21,7 +21,7 @@ public class GetActivePlayersQueryHandler : IRequestHandler<GetActivePlayersQuer
 
     public async Task<List<PlayerDto>> Handle(GetActivePlayersQuery request, CancellationToken cancellationToken)
     {
-        var players = await _playerQueryRepository.GetAllAsync(cancellationToken);
+        var players = await _playerQueryRepository.GetAllAsync(true, cancellationToken);
         return players.Select(p => new PlayerDto
         {
             Id = p.Id,

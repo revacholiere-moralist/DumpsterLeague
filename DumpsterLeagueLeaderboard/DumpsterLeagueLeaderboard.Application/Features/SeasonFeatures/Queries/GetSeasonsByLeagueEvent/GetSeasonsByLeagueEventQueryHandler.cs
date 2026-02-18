@@ -22,7 +22,7 @@ public class GetSeasonsByLeagueEventQueryHandler : IRequestHandler<GetSeasonsByL
     public async Task<List<SeasonDto>> Handle(GetSeasonsByLeagueEventIdQuery request, CancellationToken cancellationToken)
     {
         var seasons = await _seasonQueryRepository.GetSeasonsByLeagueEvent(request.LeagueEventId, cancellationToken);
-        var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.LeagueEventId, cancellationToken);
+        var leagueEvent = await _leagueEventQueryRepository.GetByIdAsync(request.LeagueEventId, true, cancellationToken);
         if (leagueEvent is null)
         {
             throw new ArgumentException("League event not found.");

@@ -6,11 +6,11 @@ namespace DumpsterLeagueLeaderboard.Domain.Entities
     {
         [Column("tournament_id")]
         public Guid TournamentId { get; set; }
-        public Tournament Tournament { get; set; } = null;
+        public Tournament Tournament { get; set; } = null!;
         
         [Column("league_event_id")]
         public Guid LeagueEventId { get; set; }
-        public LeagueEvent LeagueEvent { get; set; } = null;
+        public LeagueEvent LeagueEvent { get; set; } = null!;
         
         [Column("season_id")]
         public Guid SeasonId { get; set; }
@@ -18,7 +18,7 @@ namespace DumpsterLeagueLeaderboard.Domain.Entities
         
         [Column("player_id")]
         public Guid PlayerId { get; set; }
-        public Player Player { get; set; } = null;
+        public Player Player { get; set; } = null!;
         
         [Column("current_points")]
         public int CurrentPoints { get; set; }
