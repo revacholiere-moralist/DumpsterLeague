@@ -7,7 +7,6 @@ namespace DumpsterLeagueLeaderboard.Application.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<Player> Players { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

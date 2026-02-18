@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations.ApplicationWrite
 {
     /// <inheritdoc />
-    public partial class AddEventAndSeasonToPointTable : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

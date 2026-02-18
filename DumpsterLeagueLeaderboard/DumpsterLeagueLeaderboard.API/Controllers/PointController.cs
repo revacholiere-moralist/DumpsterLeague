@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+
 using DumpsterLeagueLeaderboard.Application.Features.PointFeatures.Commands.AddPoint;
 using DumpsterLeagueLeaderboard.Application.Features.PointFeatures.Queries.GetPointsByEventAndSeason;
 using DumpsterLeagueLeaderboard.Application.Features.PointFeatures.Requests;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
+using MediatR;
 
 namespace DumpsterLeagueLeaderboard.WebApi.Controllers
 {

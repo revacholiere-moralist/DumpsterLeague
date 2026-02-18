@@ -14,7 +14,7 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Repositories.Queries
 
         public async Task<List<Season>> GetSeasonsByLeagueEvent(Guid leagueId, CancellationToken cancellationToken = default)
         {
-            return await _readContext.Seasons.Where(s => s.LeagueEventId == leagueId).ToListAsync(cancellationToken);
+            return await _readContext.Seasons.Where(s => s.LeagueEventId == leagueId && s.IsActive).ToListAsync(cancellationToken);
         }
     }
 }

@@ -16,15 +16,24 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Repositories.Queries
             _readContext = readContext;
         }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<IEnumerable<T>> GetAllAsync(bool getActiveOnly = true, CancellationToken cancellationToken = default)
         {
-            return await _readContext!.Set<T>().ToListAsync(cancellationToken);
+            var query = await _readContext!.Set<T>().ToListAsync(cancellationToken);
+            if (getActiveOnly)
+            {
+                query = query.Where(e => e.IsActive).ToList();
+            }
+            return query;
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public virtual async Task<T> GetByIdAsync(Guid id, bool getActiveOnly = true, CancellationToken cancellationToken = default)
         {
             var result = await _readContext!.Set<T>().FindAsync(id, cancellationToken);
             if (result is null)
+            {
+                return new T();
+            }
+            if (getActiveOnly && !result.IsActive)
             {
                 return new T();
             }

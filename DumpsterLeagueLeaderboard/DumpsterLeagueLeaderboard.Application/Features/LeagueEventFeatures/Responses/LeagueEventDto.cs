@@ -1,3 +1,5 @@
+using DumpsterLeagueLeaderboard.Application.Common.Responses;
+
 namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Responses;
 public class LeagueEventDto : CommonResponseDto
 {

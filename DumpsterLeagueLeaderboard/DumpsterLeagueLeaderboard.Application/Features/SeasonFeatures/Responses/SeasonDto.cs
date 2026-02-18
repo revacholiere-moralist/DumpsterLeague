@@ -1,4 +1,5 @@
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using DumpsterLeagueLeaderboard.Application.Common.Responses;
+
 namespace DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Responses;
 public class SeasonDto : CommonResponseDto
 {

@@ -1,12 +1,10 @@
-using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries.GetLeagueEventById;
-using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Requests;
-using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent;
-using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Queries.GetActiveLeagueEvents;
-using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Commands.AddSeason;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Requests;
+
+using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Commands.AddSeason;
 using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Queries.GetSeasonsByLeagueEvent;
+using DumpsterLeagueLeaderboard.Application.Features.SeasonFeatures.Requests;
+
+using MediatR;
 
 namespace DumpsterLeagueLeaderboard.WebApi.Controllers
 {

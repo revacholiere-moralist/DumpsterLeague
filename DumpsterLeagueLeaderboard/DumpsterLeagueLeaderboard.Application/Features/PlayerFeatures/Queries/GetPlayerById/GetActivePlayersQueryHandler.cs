@@ -6,20 +6,17 @@ namespace DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Queries.
 
 public class GetPlayerByIdQueryHandler : IRequestHandler<GetPlayerByIdQuery, PlayerDto>
 {
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IPlayerQueryRepository _playerQueryRepository;
 
     public GetPlayerByIdQueryHandler(
-        IUnitOfWork unitOfWork,
         IPlayerQueryRepository playerQueryRepository)
     {
-        _unitOfWork = unitOfWork;
         _playerQueryRepository = playerQueryRepository;
     }
 
     public async Task<PlayerDto> Handle(GetPlayerByIdQuery request, CancellationToken cancellationToken)
     {
-        var player = await _playerQueryRepository.GetByIdAsync(request.Id, cancellationToken);
+        var player = await _playerQueryRepository.GetByIdAsync(request.Id, true, cancellationToken);
         return new PlayerDto
         {
             Id = player.Id,

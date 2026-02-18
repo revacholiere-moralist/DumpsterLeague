@@ -1,3 +1,4 @@
+namespace DumpsterLeagueLeaderboard.Application.Common.Responses;
 public class CommonResponseDto
 {
         public Guid Id { get; set; } = Guid.NewGuid();
