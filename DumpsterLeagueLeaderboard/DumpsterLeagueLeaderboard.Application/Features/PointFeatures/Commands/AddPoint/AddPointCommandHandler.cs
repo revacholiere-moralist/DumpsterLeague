@@ -5,12 +5,12 @@ using MediatR;
 using DumpsterLeagueLeaderboard.Application.Features.PointFeatures.Responses;
 namespace DumpsterLeagueLeaderboard.Application.Features.PointFeatures.Commands.AddPoint;
     
-public class AddPointHandler : IRequestHandler<AddPointCommand, PointDto>
+public class AddPointCommandHandler : IRequestHandler<AddPointCommand, PointDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPointRepository _pointRepository;
 
-    public AddPointHandler(
+    public AddPointCommandHandler(
         IUnitOfWork unitOfWork,
         IPointRepository pointRepository)
     {

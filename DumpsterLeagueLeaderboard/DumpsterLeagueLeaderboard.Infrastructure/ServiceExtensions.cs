@@ -43,5 +43,8 @@ public static class ServiceExtensions
 
         services.AddScoped<IPlayerPlacementHistoryRepository, PlayerPlacementHistoryRepository>();
         services.AddScoped<IPlayerPlacementHistoryQueryRepository, PlayerPlacementHistoryQueryRepository>();
+
+        services.AddScoped<ILeaderboardRepository, LeaderboardRepository>();
+        services.AddScoped<ILeaderboardQueryRepository, LeaderboardQueryRepository>();
     }
 }

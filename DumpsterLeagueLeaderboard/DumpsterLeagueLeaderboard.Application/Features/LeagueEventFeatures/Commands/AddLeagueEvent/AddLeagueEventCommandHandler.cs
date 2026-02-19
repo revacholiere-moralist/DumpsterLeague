@@ -5,13 +5,13 @@ using DumpsterLeagueLeaderboard.Domain.Entities;
 
 using MediatR;
 
-namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent.AddLeagueEvent;
-public class AddLeagueEventHandler : IRequestHandler<AddLeagueEventCommand, LeagueEventDto>
+namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.AddLeagueEvent;
+public class AddLeagueEventCommandHandler : IRequestHandler<AddLeagueEventCommand, LeagueEventDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILeagueEventRepository _leagueEventRepository;
 
-    public AddLeagueEventHandler(
+    public AddLeagueEventCommandHandler(
         IUnitOfWork unitOfWork,
         ILeagueEventRepository leagueEventRepository)
     {

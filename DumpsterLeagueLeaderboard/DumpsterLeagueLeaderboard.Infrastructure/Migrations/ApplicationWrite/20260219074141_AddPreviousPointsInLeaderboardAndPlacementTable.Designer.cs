@@ -3,6 +3,7 @@ using System;
 using DumpsterLeagueLeaderboard.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations.ApplicationWrite
 {
     [DbContext(typeof(ApplicationWriteContext))]
-    partial class ApplicationWriteContextModelSnapshot : ModelSnapshot
+    [Migration("20260219074141_AddPreviousPointsInLeaderboardAndPlacementTable")]
+    partial class AddPreviousPointsInLeaderboardAndPlacementTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,10 +199,6 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Migrations.ApplicationWrite
                     b.Property<bool>("IsCurrent")
                         .HasColumnType("boolean")
                         .HasColumnName("is_current");
-
-                    b.Property<bool>("IsDisqualified")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_disqualified");
 
                     b.Property<int>("Placement")
                         .HasColumnType("integer")

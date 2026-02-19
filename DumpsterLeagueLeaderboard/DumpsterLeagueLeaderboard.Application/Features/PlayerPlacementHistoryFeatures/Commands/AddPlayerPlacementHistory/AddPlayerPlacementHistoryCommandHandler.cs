@@ -41,11 +41,11 @@ public class AddPlayerPlacementHistoryCommandHandler : IRequestHandler<AddPlayer
         
         foreach (var playerPlacementRequest in request.Request.Players)
         {
-
             var playerPlacementHistory = new PlayerPlacementHistory
             {
                 PlayerId = playerPlacementRequest.PlayerId,
                 Placement = playerPlacementRequest.Placement,
+                IsDisqualified = playerPlacementRequest.IsDisqualified,
                 TournamentId = tournamentId,
                 IsCurrent = playerPlacementRequest.IsCurrent,
                 CreatedAt = DateTime.UtcNow,
@@ -67,16 +67,16 @@ public class AddPlayerPlacementHistoryCommandHandler : IRequestHandler<AddPlayer
                 var lastPlayerPlacement = playerPlacements.First();
                 playerLastPoint = lastPlayerPlacement.CurrentPoints;
             }
-
+            
             var pointGained = pointsGained.First(x => x.Position == playerPlacementRequest.Placement).PointGained;
             var currentPoint = playerLastPoint + pointGained;
 
+            playerPlacementHistory.PreviousPoints = playerLastPoint;
             playerPlacementHistory.PointsGained = pointGained;
             playerPlacementHistory.CurrentPoints = currentPoint;
 
             var addedPlayerPlacementHistory = await _playerPlacementHistoryRepository.AddAsync(playerPlacementHistory, cancellationToken);
             addedPlayerPlacementHistories.Add(addedPlayerPlacementHistory);
-
         }
         try
         {

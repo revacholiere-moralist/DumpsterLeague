@@ -26,6 +26,9 @@ namespace DumpsterLeagueLeaderboard.Domain.Entities
         [Column("points_gained")]
         public int PointsGained { get; set; }
         
+        [Column("previous_points")]
+        public int PreviousPoints { get; set; }
+        
         [Column("placement")]
         public int Placement { get; set; }
         

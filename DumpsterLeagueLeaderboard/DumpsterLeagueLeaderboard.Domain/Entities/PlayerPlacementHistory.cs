@@ -19,6 +19,10 @@ namespace DumpsterLeagueLeaderboard.Domain.Entities
         public int CurrentPoints { get; set; } = 0;
         [Column("points_gained")]
         public int PointsGained { get; set; } = 0;
+        [Column("previous_points")]
+        public int PreviousPoints { get; set; } = 0;
+        [Column("is_disqualified")]
+        public bool IsDisqualified { get; set; } = false;
         [Column("is_current")]
         public bool IsCurrent { get; set; } = true;
     }

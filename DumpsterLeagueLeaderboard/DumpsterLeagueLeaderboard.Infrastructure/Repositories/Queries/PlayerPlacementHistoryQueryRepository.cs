@@ -20,5 +20,14 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Repositories.Queries
                                                                     && p.IsActive)
                                                                 .Include(p => p.Tournament).ToListAsync(cancellationToken);
         }
+
+        public async Task<List<PlayerPlacementHistory>> GetCurrentByEventAndSeason(Guid eventId, Guid seasonId, CancellationToken cancellationToken = default)
+        {
+            return await _readContext.PlayerPlacementHistories.Where(p => p.Tournament.LeagueEventId == eventId
+                                                                    && p.Tournament.SeasonId == seasonId
+                                                                    && p.IsCurrent
+                                                                    && p.IsActive)
+                                                                .Include(p => p.Tournament).ToListAsync(cancellationToken);
+        }
     }
 }

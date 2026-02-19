@@ -5,12 +5,12 @@ using MediatR;
 using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Responses;
 namespace DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Command.AddPlayer;
     
-public class AddPlayerHandler : IRequestHandler<AddPlayerCommand, PlayerDto>
+public class AddPlayerCommandHandler : IRequestHandler<AddPlayerCommand, PlayerDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPlayerRepository _playerRepository;
 
-    public AddPlayerHandler(
+    public AddPlayerCommandHandler(
         IUnitOfWork unitOfWork,
         IPlayerRepository playerRepository)
     {

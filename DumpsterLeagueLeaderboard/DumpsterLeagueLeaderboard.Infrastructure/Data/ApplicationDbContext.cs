@@ -15,6 +15,7 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Data
         public DbSet<Point> Points { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<PlayerPlacementHistory> PlayerPlacementHistories { get; set; }
+        public DbSet<Leaderboard> Leaderboards { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
