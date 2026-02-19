@@ -5,6 +5,7 @@ using DumpsterLeagueLeaderboard.Application.Features.TournamentFeatures.Queries.
 using DumpsterLeagueLeaderboard.Application.Features.TournamentFeatures.Queries.GetTournamentsByLeagueEvent;
 
 using MediatR;
+using DumpsterLeagueLeaderboard.Application.Features.TournamentFeatures.Requests;
 
 namespace DumpsterLeagueLeaderboard.WebApi.Controllers
 {
@@ -21,9 +22,9 @@ namespace DumpsterLeagueLeaderboard.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AddTournamentCommand request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(AddTournamentRequest request, CancellationToken cancellationToken)
         {
-            var tournament = await _mediator.Send(request, cancellationToken);
+            var tournament = await _mediator.Send(new AddTournamentCommand(request), cancellationToken);
             return CreatedAtAction(nameof(Create), new { id = tournament.Id }, tournament);
         }
 
