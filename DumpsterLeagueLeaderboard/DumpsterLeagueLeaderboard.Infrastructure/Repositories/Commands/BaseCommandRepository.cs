@@ -19,12 +19,12 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Repositories.Commands
             var result = await _writeContext!.Set<T>().AddAsync(entity, cancellationToken);
             return result.Entity;
         }
-        public virtual void Update(T entity)
+        public virtual async Task Update(T entity)
         {
             _writeContext!.Set<T>().Update(entity);
         }
         
-        public virtual void Delete(T entity)
+        public virtual async Task Delete(T entity)
         {
             _writeContext!.Set<T>().Remove(entity);
         }

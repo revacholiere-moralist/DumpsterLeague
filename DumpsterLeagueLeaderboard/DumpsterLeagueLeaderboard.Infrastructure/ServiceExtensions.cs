@@ -40,5 +40,8 @@ public static class ServiceExtensions
 
         services.AddScoped<ITournamentRepository, TournamentRepository>();
         services.AddScoped<ITournamentQueryRepository, TournamentQueryRepository>();
+
+        services.AddScoped<IPlayerPlacementHistoryRepository, PlayerPlacementHistoryRepository>();
+        services.AddScoped<IPlayerPlacementHistoryQueryRepository, PlayerPlacementHistoryQueryRepository>();
     }
 }
