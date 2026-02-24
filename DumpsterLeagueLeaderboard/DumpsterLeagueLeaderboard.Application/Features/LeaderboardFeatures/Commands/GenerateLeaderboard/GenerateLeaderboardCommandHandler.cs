@@ -1,10 +1,12 @@
-using DumpsterLeagueLeaderboard.Application.Features.GenerateLeaderboardFeatures.Commands.GenerateLeaderboard;
+using DumpsterLeagueLeaderboard.Application.Exceptions;
+using DumpsterLeagueLeaderboard.Application.Features.LeaderboardFeatures.Commands.GenerateLeaderboard;
 using DumpsterLeagueLeaderboard.Application.Features.LeaderboardFeatures.Responses;
 using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Commands;
 using DumpsterLeagueLeaderboard.Application.Interfaces.Repositories.Queries;
 using DumpsterLeagueLeaderboard.Application.Repositories;
 using DumpsterLeagueLeaderboard.Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace DumpsterLeagueLeaderboard.Application.Features.LeaderboardFeatures.Commands.GenerateLeaderboard;
 public class GenerateLeaderboardCommandHandler : IRequestHandler<GenerateLeaderboardCommand, List<LeaderboardDto>>
@@ -13,24 +15,34 @@ public class GenerateLeaderboardCommandHandler : IRequestHandler<GenerateLeaderb
     private readonly ILeaderboardRepository _leaderboardRepository;
     private readonly ILeaderboardQueryRepository _leaderboardQueryRepository;
     private readonly IPlayerPlacementHistoryQueryRepository _playerPlacementHistoryQueryRepository;
+    private readonly ILogger<GenerateLeaderboardCommandHandler> _logger;
+
 
     public GenerateLeaderboardCommandHandler(
         IUnitOfWork unitOfWork,
         ILeaderboardRepository leaderboardRepository,
         ILeaderboardQueryRepository leaderboardQueryRepository,
-        IPlayerPlacementHistoryQueryRepository playerPlacementHistoryQueryRepository)
+        IPlayerPlacementHistoryQueryRepository playerPlacementHistoryQueryRepository,
+        ILogger<GenerateLeaderboardCommandHandler> logger)
     {
         _unitOfWork = unitOfWork;
         _leaderboardRepository = leaderboardRepository;
         _leaderboardQueryRepository = leaderboardQueryRepository;
         _playerPlacementHistoryQueryRepository = playerPlacementHistoryQueryRepository;
+        _logger = logger;   
     }
 
     public async Task<List<LeaderboardDto>> Handle(GenerateLeaderboardCommand request, CancellationToken cancellationToken)
     {
+        _logger.LogInformation("Generating Leaderboards for league {@leagueEventId} and season {@seasonId}.", request.Request.LeagueEventId, request.Request.SeasonId);
         var results = new List<LeaderboardDto>();
 
         var playerPlacements = await _playerPlacementHistoryQueryRepository.GetCurrentByEventAndSeason(request.Request.LeagueEventId, request.Request.SeasonId, cancellationToken);
+        if (playerPlacements.Count == 0)
+        {
+            throw new NotFoundException("No player placements found when generating leaderboard");
+        }
+
         playerPlacements = playerPlacements
                             .OrderByDescending(p => p.CurrentPoints)
                             .ThenBy(p => p.Tournament.TournamentDate)
@@ -45,7 +57,14 @@ public class GenerateLeaderboardCommandHandler : IRequestHandler<GenerateLeaderb
                 await _leaderboardRepository.Update(existingLeaderboard);
             }
         }
-
+        var latestTournamentDate = playerPlacements.First().Tournament.TournamentDate;
+        foreach (var playerPlacement in playerPlacements)
+        {
+            if (playerPlacement.Tournament.TournamentDate > latestTournamentDate)
+            {
+                latestTournamentDate = playerPlacement.Tournament.TournamentDate;
+            }
+        }
         var position = 1;
         PlayerPlacementHistory? prevPlayerPlacement = null;
         foreach (var playerPlacement in playerPlacements)
@@ -60,7 +79,7 @@ public class GenerateLeaderboardCommandHandler : IRequestHandler<GenerateLeaderb
                 PreviousPoints = playerPlacement.PreviousPoints,
                 PointsGained = playerPlacement.PointsGained,
                 CurrentPoints = playerPlacement.CurrentPoints,
-                LeaderboardDate = playerPlacement.Tournament.TournamentDate,
+                LeaderboardDate = latestTournamentDate,
                 IsCurrent = true,
                 IsActive = true
             };
@@ -95,8 +114,14 @@ public class GenerateLeaderboardCommandHandler : IRequestHandler<GenerateLeaderb
             };
             results.Add(result);
         }
-        await _unitOfWork.Save(cancellationToken);
+        try
+        {
+            await _unitOfWork.Save(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new DatabaseException(string.Format("exception occurred during Leaderboard Generation: {0}", ex.Message));
+        }    
         return results;
-
     }
 }

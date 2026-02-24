@@ -1,0 +1,7 @@
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Requests;
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Responses;
+using MediatR;
+
+namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.DeleteLeagueEvent;
+
+public record DeleteLeagueEventCommand(Guid LeagueEventId) : IRequest;

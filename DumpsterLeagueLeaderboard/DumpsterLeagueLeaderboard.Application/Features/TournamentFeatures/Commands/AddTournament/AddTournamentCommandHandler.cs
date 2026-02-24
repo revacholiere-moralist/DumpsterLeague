@@ -49,6 +49,7 @@ public class AddTournamentCommandHandler : IRequestHandler<AddTournamentCommand,
         {
             TournamentName = request.Request.TournamentName,
             TournamentDate = request.Request.TournamentDate,
+            StartGgLink = request.Request.StartGgLink,
             LeagueEventId = request.Request.LeagueEventId,
             SeasonId = request.Request.SeasonId,
             CreatedAt = DateTime.UtcNow,

@@ -1,0 +1,6 @@
+using DumpsterLeagueLeaderboard.Application.Features.PlayerPlacementHistoryFeatures.Requests;
+using DumpsterLeagueLeaderboard.Application.Features.PlayerPlacementHistoryFeatures.Responses;
+using MediatR;
+namespace DumpsterLeagueLeaderboard.Application.Features.PlayerPlacementHistoryFeatures.Command.UpdatePlayerPlacementHistory;
+
+public record UpdatePlayerPlacementHistoryCommand(UpdatePlayerPlacementHistoryRequest Request) : IRequest<PlayerPlacementHistoryDto>;

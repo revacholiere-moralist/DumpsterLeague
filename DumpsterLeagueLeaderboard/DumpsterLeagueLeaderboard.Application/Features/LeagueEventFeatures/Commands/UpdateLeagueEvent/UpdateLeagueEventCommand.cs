@@ -1,0 +1,7 @@
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Requests;
+using DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Responses;
+using MediatR;
+
+namespace DumpsterLeagueLeaderboard.Application.Features.LeagueEventFeatures.Commands.UpdateLeagueEvent;
+
+public record UpdateLeagueEventCommand(UpdateLeagueEventRequest Request) : IRequest<LeagueEventDto>;

@@ -10,7 +10,7 @@ namespace DumpsterLeagueLeaderboard.WebApi.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v1/players")]
+    [Route("api/v{version}/players")]
     public class PlayerController : ControllerBase
     {
         private readonly IMediator _mediator;

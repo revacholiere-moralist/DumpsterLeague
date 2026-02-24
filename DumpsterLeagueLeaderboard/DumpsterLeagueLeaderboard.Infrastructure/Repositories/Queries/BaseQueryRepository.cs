@@ -29,11 +29,7 @@ namespace DumpsterLeagueLeaderboard.Infrastructure.Repositories.Queries
         public virtual async Task<T> GetByIdAsync(Guid id, bool getActiveOnly = true, CancellationToken cancellationToken = default)
         {
             var result = await _readContext!.Set<T>().FindAsync(id, cancellationToken);
-            if (result is null)
-            {
-                return new T();
-            }
-            if (getActiveOnly && !result.IsActive)
+            if (result is null || (getActiveOnly && !result.IsActive))
             {
                 return new T();
             }

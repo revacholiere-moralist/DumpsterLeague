@@ -11,7 +11,7 @@ namespace DumpsterLeagueLeaderboard.WebApi.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v1/tournaments")]
+    [Route("api/v{version}/tournaments")]
     public class TournamentController : ControllerBase
     {
         private readonly IMediator _mediator;

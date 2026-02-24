@@ -2,6 +2,6 @@ using DumpsterLeagueLeaderboard.Application.Features.LeaderboardFeatures.Respons
 using DumpsterLeagueLeaderboard.Application.Features.PlayerFeatures.Requests;
 using MediatR;
 
-namespace DumpsterLeagueLeaderboard.Application.Features.GenerateLeaderboardFeatures.Commands.GenerateLeaderboard;
+namespace DumpsterLeagueLeaderboard.Application.Features.LeaderboardFeatures.Commands.GenerateLeaderboard;
 
 public record GenerateLeaderboardCommand(GenerateLeaderboardRequest Request) : IRequest<List<LeaderboardDto>>;
